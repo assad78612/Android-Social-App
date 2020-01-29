@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activities.RegisterActivity">
+
+    <EditText
+        android:id="@+id/registrationCodeToken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="Token"
+        android:inputType="textPersonName"
+        tools:context=".Activities.RegisterActivity"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="80dp" />
+
+    <Button
+        android:id="@+id/registrationCodeSubmitBtn"
+        android:layout_width="133dp"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="314dp" />
+</LinearLayout>
+

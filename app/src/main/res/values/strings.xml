@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Soical App</string>
+
+    <string name="fname">First Name</string>
+    <string name="lname">Last Name</string>
+
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+
+    <string name="welcome_to_our_social_app">Welcome to our social app</string>
+    <string name="this_is_the_login_page">This is the login page</string>
+    <string name="loginButton">Login</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_bottom__view">bottom_ViewActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="submit">Submit</string>
+    <string name="email">Email</string>
+
+</resources>
