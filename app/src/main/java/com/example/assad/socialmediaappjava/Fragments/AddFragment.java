@@ -124,9 +124,7 @@ public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetL
         editTextTimeofEvent.setText(hourOfDay + ":" + minute);
     }
 
-    private String soemthign(){
-        return "Assad";
-    }
+
     private void showTimePickerDialog() {
         final Calendar c = Calendar.getInstance();
         int hour = c.get(Calendar.HOUR_OF_DAY);
