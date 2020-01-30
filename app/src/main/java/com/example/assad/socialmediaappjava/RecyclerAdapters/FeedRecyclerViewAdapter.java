@@ -69,6 +69,7 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
         holder.eventTime.setText(eventModels.get(i).getEventTime());
         holder.eventDescription.setText(eventModels.get(i).getEventDescription());
         holder.eventAuthor.setText(eventModels.get(i).getEventAuthor());
+        holder.timeofEvent.setText(eventModels.get(i).getTimeofEvent());
 
 
         if (eventModels.get(i).isHasBeenJoined()) {
@@ -179,7 +180,7 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
     */
     public class FeedViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView eventTitle, eventTime, eventDescription, eventAuthor, likeButton;
+        private TextView eventTitle, eventTime, eventDescription, eventAuthor, likeButton, timeofEvent;
         private Button joinEventBtn;
 
         public FeedViewHolder(@NonNull View itemView) {
@@ -190,6 +191,8 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
             eventDescription = itemView.findViewById(R.id.eventDescription);
             eventAuthor = itemView.findViewById(R.id.eventAuthor);
             joinEventBtn = itemView.findViewById(R.id.jointEventBtn);
+            timeofEvent = itemView.findViewById(R.id.timeofEvent);
+
 
 
         }

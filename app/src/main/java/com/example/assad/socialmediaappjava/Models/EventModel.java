@@ -11,9 +11,10 @@ public class EventModel {
     private boolean hasBeenLiked;
     private String eventDescription;
     private boolean hasBeenJoined;
+    private String timeofEvent;
 
 
-    public EventModel(String imageUrl, String eventTitle, String eventID, String eventTime, String eventAuthor, String eventDescription, boolean hasBeenLiked, boolean hasBeenJoined) {
+    public EventModel(String imageUrl, String eventTitle, String eventID, String eventTime, String eventAuthor, String eventDescription, boolean hasBeenLiked, boolean hasBeenJoined, String timeofEvent) {
         this.imageUrl = imageUrl;
         this.eventTitle = eventTitle;
         this.eventID = eventID;
@@ -22,6 +23,7 @@ public class EventModel {
         this.eventDescription = eventDescription;
         this.hasBeenLiked = hasBeenLiked;
         this.hasBeenJoined = hasBeenJoined;
+        this.timeofEvent = timeofEvent;
 
     }
 
@@ -88,4 +90,13 @@ public class EventModel {
     public void setHasBeenJoined(boolean hasBeenJoined) {
         this.hasBeenJoined = hasBeenJoined;
     }
+
+    public String getTimeofEvent() {
+        return timeofEvent;
+    }
+
+    public void setTimeofEvent(String timeofEvent) {
+        this.timeofEvent = timeofEvent;
+    }
 }
+

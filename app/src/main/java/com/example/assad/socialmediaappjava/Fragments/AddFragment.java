@@ -41,7 +41,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetListener {
-    private EditText editTextEventTitle, editTextEventDescription, editTextDatePicker, editTextTimePicker;
+    private EditText editTextEventTitle, editTextEventDescription, editTextDatePicker, editTextTimeofEvent;
     private Button buttonPost, buttonLike;
     private SharedPreferences prefs;
     private RequestQueue myQueue;
@@ -67,7 +67,7 @@ public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetL
         editTextEventDescription = view.findViewById(R.id.addEventDescription);
         buttonPost = view.findViewById(R.id.addPostButton);
         editTextDatePicker = view.findViewById(R.id.addEventDate);
-        editTextTimePicker = view.findViewById(R.id.addEventTime);
+        editTextTimeofEvent = view.findViewById(R.id.addEventTime);
 
 
         buttonPost.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +108,7 @@ public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetL
             }
         });
 
-        editTextTimePicker.setOnClickListener(new View.OnClickListener() {
+        editTextTimeofEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -121,7 +121,7 @@ public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetL
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        editTextTimePicker.setText(hourOfDay + ":" + minute);
+        editTextTimeofEvent.setText(hourOfDay + ":" + minute);
     }
 
     private String soemthign(){
@@ -145,7 +145,7 @@ public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetL
             userDetails.put("eventDescription", editTextEventDescription.getText().toString());
             userDetails.put("eventTime", editTextDatePicker.getText().toString());
             userDetails.put("eventAuthor", prefs.getString("username", null));
-            userDetails.put("time", editTextTimePicker.getText().toString());
+            userDetails.put("time", editTextTimeofEvent.getText().toString());
 
 
         } catch (JSONException e) {
@@ -185,8 +185,4 @@ public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetL
 
         myQueue.add(postRequest);
     }
-
-
-
-
 }

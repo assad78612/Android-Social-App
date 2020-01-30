@@ -87,8 +87,8 @@ public class FeedFragment extends Fragment {
                                             currentEvent.getString("eventAuthor"),
                                             currentEvent.getString("eventDescription"),
                                             false,
-                                            false
-
+                                            false,
+                                            currentEvent.getString("time")
                                     );
                                     eventModels.add(e);
                                 }
