@@ -33,13 +33,17 @@ public class ParentTabNavigator extends AppCompatActivity {
                         case R.id.navigation_add:
                             selectedFragment = new AddFragment();
                             break;
-
+                        case R.id.navigation_search:
+                            selectedFragment = new ProfileFragment();
+                            break;
 
                         case R.id.navigation_profile:
                             selectedFragment = new ProfileFragment();
                             break;
 
+
                     }
+
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 

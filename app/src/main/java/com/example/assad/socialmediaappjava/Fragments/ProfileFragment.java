@@ -28,6 +28,8 @@ import com.example.assad.socialmediaappjava.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 import static android.content.Context.MODE_PRIVATE;
 
 public class ProfileFragment extends Fragment {
@@ -37,7 +39,6 @@ public class ProfileFragment extends Fragment {
     private String usernameLoggedIn;
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
-    private Button logoutButton;
 
     @Nullable
     @Override
@@ -49,7 +50,12 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        myQueue = Volley.newRequestQueue(this.getContext());
+
+/*
+     Old one   myQueue = Volley.newRequestQueue(this.getContext());
+*/
+
+        myQueue = Volley.newRequestQueue(Objects.requireNonNull(this.getContext()));
 
 
         /* Using SharedPreferences will store all the user details who is logged in, allowing the profile
@@ -64,12 +70,18 @@ public class ProfileFragment extends Fragment {
         emailID and fullName which are being assigned to the files which are located in the
         layout XML files created.
 */
-        emailID = getView().findViewById(R.id.email);
+
+
+/*
+        Old one emailID = getView().findViewById(R.id.email);
+*/
+        emailID = Objects.requireNonNull(getView()).findViewById(R.id.email);
         fullName = getView().findViewById(R.id.fullName);
 
         getUserProfileInformation();
 
-        logoutButton = getView().findViewById(R.id.LogoutButton);
+        //This has been declared as a local variable, as it was previously declared on top
+        Button logoutButton = getView().findViewById(R.id.LogoutButton);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,22 +105,22 @@ public class ProfileFragment extends Fragment {
     private void getUserProfileInformation() {
 
         /* Using BASE_NETWORK_ADDRESS which is using the current network address inputted within  the "Network" class
-          * along with "userprofile?id=" which retrieves the user information and and ID of that user is given locating that user and
-           * retrieves the user profile information through the API  MySQL database. usernameLoggedIn is using the SharedPreferences with that user logged in */
+         * along with "userprofile?id=" which retrieves the user information and and ID of that user is given locating that user and
+         * retrieves the user profile information through the API  MySQL database. usernameLoggedIn is using the SharedPreferences with that user logged in */
 
         String mJSONURL = NetworkConfiguration.BASE_NETWORK_ADDRESS + "userprofile?id=" + usernameLoggedIn;
 
         /* By using a JsonObjectRequest we are able to convert the data allowing the API to  */
 
 
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, mJSONURL,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, mJSONURL,
                 null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
 
                 try {
-                    fullName.setText(response.getJSONObject("userProfile").getString("firstName") + " " + response.getJSONObject("userProfile").getString("lastName"));
+                    fullName.setText(String.format(response.getJSONObject("userProfile").getString("firstName"), response.getJSONObject("userProfile").getString("lastName")));
                     emailID.setText(response.getJSONObject("userProfile").getString("emailAddress"));
 
 
@@ -124,8 +136,8 @@ public class ProfileFragment extends Fragment {
             }
         });
         /* myQueue will perform the entire request for getUserProfileInformation which will connect to the API, myQueue will only be perform after getUserProfileInformation
-           * has been executed and finally running the myQueue network request */
-        myQueue.add(req);
+         * has been executed and finally running the myQueue network request */
+        myQueue.add(request);
 
     }
 

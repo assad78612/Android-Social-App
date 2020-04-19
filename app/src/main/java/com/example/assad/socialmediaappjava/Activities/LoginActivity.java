@@ -77,6 +77,8 @@ public class LoginActivity extends AppCompatActivity {
                 Intent registerIntent = new Intent(LoginActivity.this, ParentTabNavigator.class);
                 LoginActivity.this.startActivity(registerIntent);
                 finish();
+
+
             }
         });
 
@@ -95,13 +97,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 saveData();
 
+
                 makeRequest();
             }
 
             public void saveData() {
 
                 editor.putString("username", userNameEditText.getText().toString());
-                editor.commit();
+                editor.apply();
+
 
             }
         });

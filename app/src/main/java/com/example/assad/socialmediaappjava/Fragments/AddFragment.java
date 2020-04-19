@@ -36,13 +36,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
 import static android.content.Context.MODE_PRIVATE;
 
 
 public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetListener {
     private EditText editTextEventTitle, editTextEventDescription, editTextDatePicker, editTextTimeofEvent;
-    private Button buttonPost, buttonLike;
+    private Button buttonLike;
     private SharedPreferences prefs;
     private RequestQueue myQueue;
     private JSONObject userDetails;
@@ -65,7 +66,7 @@ public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetL
 
         editTextEventTitle = view.findViewById(R.id.addEventTitle);
         editTextEventDescription = view.findViewById(R.id.addEventDescription);
-        buttonPost = view.findViewById(R.id.addPostButton);
+        Button buttonPost = view.findViewById(R.id.addPostButton);
         editTextDatePicker = view.findViewById(R.id.addEventDate);
         editTextTimeofEvent = view.findViewById(R.id.addEventTime);
 

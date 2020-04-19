@@ -177,13 +177,19 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
 
     /*
         From the onCreateViewHolder, anything created in that layout file should be referenced in the FeedViewHolder class below.
+
+        Old one public static class FeedViewHolder extends RecyclerView.ViewHolder
+
+        Old one public FeedViewHolder(@NonNull View itemView) 
+
+
     */
-    public class FeedViewHolder extends RecyclerView.ViewHolder {
+    static class FeedViewHolder extends RecyclerView.ViewHolder {
 
         private TextView eventTitle, eventTime, eventDescription, eventAuthor, likeButton, timeofEvent;
         private Button joinEventBtn;
 
-        public FeedViewHolder(@NonNull View itemView) {
+        FeedViewHolder(@NonNull View itemView) {
             super(itemView);
 
             eventTitle = itemView.findViewById(R.id.eventTitle);
@@ -192,7 +198,6 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
             eventAuthor = itemView.findViewById(R.id.eventAuthor);
             joinEventBtn = itemView.findViewById(R.id.jointEventBtn);
             timeofEvent = itemView.findViewById(R.id.timeofEvent);
-
 
 
         }
