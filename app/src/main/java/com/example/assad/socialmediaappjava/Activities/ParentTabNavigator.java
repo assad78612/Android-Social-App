@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.assad.socialmediaappjava.Fragments.AddFragment;
 import com.example.assad.socialmediaappjava.Fragments.FeedFragment;
 import com.example.assad.socialmediaappjava.Fragments.ProfileFragment;
+import com.example.assad.socialmediaappjava.Fragments.SearchFragment;
 import com.example.assad.socialmediaappjava.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -34,7 +35,7 @@ public class ParentTabNavigator extends AppCompatActivity {
                             selectedFragment = new AddFragment();
                             break;
                         case R.id.navigation_search:
-                            selectedFragment = new ProfileFragment();
+                            selectedFragment = new SearchFragment();
                             break;
 
                         case R.id.navigation_profile:
