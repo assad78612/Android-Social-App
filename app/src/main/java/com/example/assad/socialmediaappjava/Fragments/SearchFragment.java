@@ -58,13 +58,14 @@ public class SearchFragment extends Fragment {
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 //                makeVolleyRequest();
 
             }
         });
 
         searchTalksRecyclerView = view.findViewById(R.id.searchTalksRecyclerView);
-        makeVolleyRequestForSearchFeed();
+//        makeVolleyRequestForSearchFeed();
 
         editUserInput.addTextChangedListener(new TextWatcher() {
 
@@ -76,6 +77,8 @@ public class SearchFragment extends Fragment {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+                searchModels.clear();
+                makeVolleyRequestForSearchFeed(editUserInput.getText().toString());
                 System.out.println(editUserInput.getText().toString());
 //                makeVolleyRequest(searchField.getText().toString());
             }
@@ -84,8 +87,8 @@ public class SearchFragment extends Fragment {
     }
 
 
-    private void makeVolleyRequestForSearchFeed() {
-        String mJSONURL = NetworkConfiguration.BASE_NETWORK_ADDRESS + "users";
+    private void makeVolleyRequestForSearchFeed(String usernameTyped) {
+        String mJSONURL = NetworkConfiguration.BASE_NETWORK_ADDRESS + "users?username=" + usernameTyped;
 
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -107,13 +110,10 @@ public class SearchFragment extends Fragment {
                                     /* Using the EventModel which has been created in package folder, the following event fields can be accessed
                                      * direct from the event model package Android then acknowledge's the event model package  */
 
-                                    SearchModel s = new SearchModel(
-
-                                            searchResults.getString("username")
-
-
-                                    );
+                                    SearchModel s = new SearchModel(searchResults.getString("username"));
                                     searchModels.add(s);
+
+                                    System.out.println(s);
                                 }
 
                                 searchRecycleView();
