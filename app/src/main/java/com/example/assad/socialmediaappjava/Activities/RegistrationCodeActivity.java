@@ -23,15 +23,13 @@ import com.example.assad.socialmediaappjava.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 public class RegistrationCodeActivity extends AppCompatActivity {
-    private JSONObject codeDetails;
     private RequestQueue myQueue;
     private Context context;
     private EditText tokenEditText;
-    private Button submitButton;
-    private JSONObject userDetails;
 
-    private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
     @Override
@@ -40,12 +38,12 @@ public class RegistrationCodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration_code);
 
         tokenEditText = findViewById(R.id.registrationCodeToken);
-        submitButton = findViewById(R.id.registrationCodeSubmitBtn);
+        Button submitButton = findViewById(R.id.registrationCodeSubmitBtn);
 
         myQueue = Volley.newRequestQueue(this);
         context = this.getApplicationContext();
 
-        sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -58,9 +56,9 @@ public class RegistrationCodeActivity extends AppCompatActivity {
 
     private JSONObject getCodeDetails() {
 
-        codeDetails = new JSONObject();
+        JSONObject codeDetails = new JSONObject();
 
-        String emailFromPreviousIntent = getIntent().getExtras().getString("emailAddress");
+        String emailFromPreviousIntent = Objects.requireNonNull(getIntent().getExtras()).getString("emailAddress");
 
         try {
             codeDetails.put("email", emailFromPreviousIntent);
@@ -103,10 +101,10 @@ public class RegistrationCodeActivity extends AppCompatActivity {
 
 
     private JSONObject getUserTypedInfo() {
-        userDetails = new JSONObject();
+        JSONObject userDetails = new JSONObject();
 
         try {
-            userDetails.put("username", getIntent().getExtras().getString("username"));
+            userDetails.put("username", Objects.requireNonNull(getIntent().getExtras()).getString("username"));
             userDetails.put("firstName", getIntent().getExtras().getString("firstName"));
             userDetails.put("lastName", getIntent().getExtras().getString("lastName"));
             userDetails.put("pwd", getIntent().getExtras().getString("pwd"));
@@ -131,7 +129,7 @@ public class RegistrationCodeActivity extends AppCompatActivity {
 
                 /*This is where we set the Shared prefs which will allow Android to retrieve the username info w
                 * from the database and send back to Android viewing the first name and last name on the profile fragment*/
-                editor.putString("username", getIntent().getExtras().getString("username"));
+                editor.putString("username", Objects.requireNonNull(getIntent().getExtras()).getString("username"));
                 editor.commit();
 
                 startActivity(userIntent);

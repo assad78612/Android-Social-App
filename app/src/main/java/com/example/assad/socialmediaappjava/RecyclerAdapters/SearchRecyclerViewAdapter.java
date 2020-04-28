@@ -16,6 +16,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.assad.socialmediaappjava.Models.SearchModel;
 import com.example.assad.socialmediaappjava.R;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,11 +26,9 @@ import java.util.List;
 public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecyclerViewAdapter.ViewHolder> {
 
     private ArrayList<SearchModel> searchModelList;
-    private Context context;
 
     public SearchRecyclerViewAdapter(ArrayList<SearchModel> searchModelList, Context context) {
         this.searchModelList = searchModelList;
-        this.context = context;
     }
 
     @Override
@@ -37,6 +36,7 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
         return position;
     }
 
+    @NotNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // 1. Set ur layout
@@ -59,11 +59,11 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
     }
 
     // This ViewHolder class references the layout file
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView username;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             // 2. Reference ur views
             username = itemView.findViewById(R.id.userResult);

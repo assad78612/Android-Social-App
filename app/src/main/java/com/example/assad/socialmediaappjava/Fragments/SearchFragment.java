@@ -43,7 +43,6 @@ public class SearchFragment extends Fragment {
     private RecyclerView searchTalksRecyclerView;
     private ArrayList<SearchModel> searchModels = new ArrayList<>();
 
-
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.search, container, false);
     }
@@ -137,29 +136,6 @@ public class SearchFragment extends Fragment {
         searchQueue.add(jsonArrayRequest);
     }
 
-//    private void makeVolleyRequest() {
-//
-//        String url = NetworkConfiguration.BASE_NETWORK_ADDRESS + "Users";
-//
-//        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, url, searchModels(), new Response.Listener<JSONObject>() {
-//
-//            public void onResponse(JSONObject response) {
-//
-//
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                error.printStackTrace();
-//                System.out.println(error);
-//
-//            }
-//        });
-//
-//        searchQueue.add(postRequest);
-//
-//
-//    }
 
 
 

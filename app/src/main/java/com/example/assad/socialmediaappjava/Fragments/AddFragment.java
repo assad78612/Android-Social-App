@@ -1,5 +1,6 @@
 package com.example.assad.socialmediaappjava.Fragments;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -32,22 +34,22 @@ import com.android.volley.toolbox.Volley;
 import com.example.assad.socialmediaappjava.Network.NetworkConfiguration;
 import com.example.assad.socialmediaappjava.R;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.TimeZone;
 
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetListener {
+public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
     private EditText editTextEventTitle, editTextEventDescription, editTextDatePicker, editTextTimeofEvent;
     private Button buttonLike;
     private SharedPreferences prefs;
     private RequestQueue myQueue;
-    private JSONObject userDetails;
-    private JSONObject jsonObject;
 
 
     @Nullable
@@ -60,7 +62,7 @@ public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetL
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        prefs = getContext().getSharedPreferences("userInfo", MODE_PRIVATE);
+        prefs = Objects.requireNonNull(getContext()).getSharedPreferences("userInfo", MODE_PRIVATE);
         myQueue = Volley.newRequestQueue(getContext());
 
 
@@ -78,37 +80,6 @@ public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetL
             }
         });
 
-        editTextDatePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                final Context context = view.getContext();
-
-                final Dialog dialog = new Dialog(context);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setCancelable(true);
-                dialog.setContentView(R.layout.custom_calendar);
-
-                final CalendarView calendarView = dialog.findViewById(R.id.calendarView);
-
-                calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-                    @Override
-                    public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-
-                        //But then put the date inside the edit text
-                        editTextDatePicker.setText(year + "/" + month + "/" + dayOfMonth);
-
-                        //Close the calendar
-                        dialog.dismiss();
-                    }
-                });
-
-
-                dialog.show();
-
-            }
-        });
-
         editTextTimeofEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +90,35 @@ public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetL
 
             }
         });
+
+        editTextDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showDatePicker();
+
+            }
+        });
+
+    }
+
+
+    @Override
+    public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
+        editTextDatePicker.setText(year + "/" + month + "/" + dayOfMonth);
+
+    }
+
+    private void showDatePicker() {
+
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(Objects.requireNonNull(getActivity()), this, year, month, day);
+        dialog.show();
+
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -137,7 +137,7 @@ public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetL
 
 
     private JSONObject getUserTypedInfo() {
-        userDetails = new JSONObject();
+        JSONObject userDetails = new JSONObject();
 
         try {
             userDetails.put("eventTitle", editTextEventTitle.getText().toString());
@@ -184,4 +184,5 @@ public class AddFragment extends Fragment implements TimePickerDialog.OnTimeSetL
 
         myQueue.add(postRequest);
     }
+
 }
